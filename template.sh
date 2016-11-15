@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
-# DO NOT TOUCH THIS SECTION
-# ##################################################
-# (50 hashtags)
+##################### DO NOT TOUCH THIS SECTION ####################
+# (20 hashtags)
 
 # Script originally derived from https://github.com/natelandau/shell-scripts/blob/master/scriptTemplate.sh
 # Setup script using "chmod +x /path/to/script.sh"
@@ -19,15 +18,14 @@ scriptTemplateVersion="1.5.0" # Version of scriptTemplate.sh that this script is
 #	v1.5.0 - Now has preferred IFS setting
 #		- Preset flags now respect true/false
 #		- Moved 'safeExit' function into template where it should have been all along.
-# ##################################################
 
 ##################### CURRENT VERSION & VERSION HISTORY ####################
-# (20 hashtags)
 
 version="1.0.0"
 # VERSION HISTORY
 # * 11/12/16 - v1.0.0 - Creation. CP-IX High School Round 1 Ubuntu 14 inspired the creation of this project.
 
+##################### SETUP VARIABLES ####################
 
 # Provide a variable with the location of this script.
 scriptPath="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
