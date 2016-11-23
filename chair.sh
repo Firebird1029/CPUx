@@ -8,4 +8,4 @@
 sudo -i 
 ufw enable
 
-z
+exit

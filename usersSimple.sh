@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Table
+# Users Simple
 
 
 # quicksorts positional arguments
