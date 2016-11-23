@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# https://github.com/natelandau/shell-scripts
+# https://github.com/kvz/bash3boilerplate
+
 ##################### DO NOT TOUCH THIS SECTION ####################
 # (20 hashtags)
 
