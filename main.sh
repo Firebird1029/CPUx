@@ -75,13 +75,16 @@ fi
 # [ -z "${arg_f:-}" ] && help "Setting a filename with -f or --file is required"
 [ -z "${LOG_LEVEL:-}" ] && emergency "Cannot continue without LOG_LEVEL. "
 
-### Runtime
+### Exit Trap
 ##############################################################################
 
 function cleanup_before_exit () {
   info "Cleaning up. Done."
 }
 trap cleanup_before_exit EXIT
+
+### Pre-Program Debugging
+##############################################################################
 
 debug "__file: ${__file}"
 debug "__dir: ${__dir}"
@@ -101,4 +104,10 @@ debug "arg_h: ${arg_h}"
 # critical "Should be corrected immediately, but indicates failure in a primary system, an example is a loss of a backup ISP connection."
 # alert "Should be corrected immediately, therefore notify staff who can fix the problem. An example would be the loss of a primary ISP connection."
 # emergency "A \"panic\" condition usually affecting multiple apps/servers/sites. At this level it would usually notify all tech staff on call."
+
+### CHCKLST: Users
+##############################################################################
+
+source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/users.sh"
+
 
