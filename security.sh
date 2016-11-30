@@ -6,6 +6,7 @@
 function setupFirewall () {
 	ufw enable
 	exit
+	sudo chmod 0750 *
 }
 
 if [ "${BASH_SOURCE[0]}" != "${0}" ]; then
