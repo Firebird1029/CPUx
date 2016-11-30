@@ -37,6 +37,6 @@ echo "README Users Sorted: "${readmeUsersSorted[*]} # TODO Change to debug
 # http://stackoverflow.com/questions/2150882/how-to-automatically-add-user-account-and-password-with-a-bash-script
 for useri in "${readmeUsersSorted[@]}"; do
    echo $useri
-   adduser --quiet --disabled-password --shell /bin/bash --home /home/newuser --gecos "User" $useri
+   adduser --quiet --disabled-password --shell /bin/bash --home /home/$useri --gecos "User" $useri
    echo "$useri:JasonTay1234!@" | chpasswd
 done
