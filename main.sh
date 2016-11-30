@@ -108,6 +108,8 @@ debug "arg_h: ${arg_h}"
 ### CHECKLIST: Security
 ##############################################################################
 
+sudo su
+
 info "Starting Security phase."
 source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/security.sh"
 
