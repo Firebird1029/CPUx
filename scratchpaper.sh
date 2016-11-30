@@ -1,5 +1,15 @@
-# quietly add a user without password
-adduser --quiet --disabled-password --shell /bin/bash --home /home/newuser --gecos "User" newuser
+fromParent=0
 
-# set password
-echo "newuser:newpassword" | chpasswd
+function setupFirewall () {
+	ufw enable
+	exit
+}
+
+if [ "${BASH_SOURCE[0]}" != "${0}" ]; then
+	:
+	# Running from parent
+else
+	# Running independently
+	echo "Running independently";
+	setupFirewall
+fi
