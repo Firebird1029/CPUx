@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
-# Firewall setup 
-
-# needs to be tested, (linux computer) probably works :)
+# Security
 
 function setupFirewall () {
 	ufw enable
