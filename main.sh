@@ -108,6 +108,12 @@ debug "arg_h: ${arg_h}"
 ### CHECKLIST: Security
 ##############################################################################
 
+info "Starting Security phase."
 source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/security.sh"
 
+info "Setting up firewall."
 setupFirewall
+
+info "Finished Security phase."
+
+

@@ -10,3 +10,11 @@ function setupFirewall () {
 	echo ${status}
 	exit
 }
+
+if [ "${BASH_SOURCE[0]}" != "${0}" ]; then
+	# Running from parent
+else
+	# Running independently
+	echo "Running independently";
+	setupFirewall
+fi
