@@ -6,7 +6,11 @@
 function setupFirewall () {
 	ufw enable
 	exit
-	sudo chmod 0750 *
+}
+
+function secureHomes () {
+	chmod 0750 /home/*
+	exit
 }
 
 if [ "${BASH_SOURCE[0]}" != "${0}" ]; then
@@ -16,4 +20,5 @@ else
 	# Running independently
 	echo "Running independently";
 	setupFirewall
+	secureHomes
 fi

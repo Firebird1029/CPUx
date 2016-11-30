@@ -111,8 +111,9 @@ debug "arg_h: ${arg_h}"
 info "Starting Security phase."
 source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/security.sh"
 
-info "Setting up firewall."
+info "Setting up firewall and securing homes."
 setupFirewall
+secureHomes
 
 info "Finished Security phase."
 
