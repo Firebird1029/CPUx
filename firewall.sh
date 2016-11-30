@@ -3,8 +3,8 @@
 
 # needs to be tested, (linux computer) probably works :)
 
-sudo -i 
+sudo -i
 ufw enable
-status=utf status
-echo status
-exit 
+status=$(ufw status)
+echo ${status}
+exit
