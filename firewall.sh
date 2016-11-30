@@ -3,7 +3,7 @@
 
 # needs to be tested, (linux computer) probably works :)
 
-sudo -i
+# sudo -i
 ufw enable
 status=$(ufw status)
 echo ${status}
