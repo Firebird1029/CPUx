@@ -105,9 +105,9 @@ debug "arg_h: ${arg_h}"
 # alert "Should be corrected immediately, therefore notify staff who can fix the problem. An example would be the loss of a primary ISP connection."
 # emergency "A \"panic\" condition usually affecting multiple apps/servers/sites. At this level it would usually notify all tech staff on call."
 
-### CHCKLST: Users
+### CHECKLIST: Security
 ##############################################################################
 
-source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/users.sh"
+source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/security.sh"
 
-
+setupFirewall
