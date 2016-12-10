@@ -2,8 +2,11 @@
 # LoginDef
 
 BEGIN {
-	gsub(/PASS_MIN_DAYS\t[0-9]+/, "PASS_MIN_DAYS	10")
-	print str
+   str = $0
+   print "String before replacement = " str
+   
+   gsub("World", "Jerry", str)
+   print "String after replacement = " str
 }
 
 END {
