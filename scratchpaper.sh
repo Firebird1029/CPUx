@@ -1,1 +1,2 @@
-sed -i -e 's/abc/XYZ/g' /tmp/file.txt
+source security.sh
+setupFirewall
