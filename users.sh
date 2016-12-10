@@ -39,3 +39,11 @@ for useri in "${readmeUsersSorted[@]}"; do
    # adduser --quiet --disabled-password --shell /bin/bash --home /home/$useri --gecos "User" $useri
    echo -e "$useri:JasonTay1234--" | chpasswd
 done
+
+# Require Sudo Auth TODO
+function requireSudoAuth () {
+   egrep '^[^#]*NOPASSWD' /etc/sudoers /etc/sudoers.d/*
+   egrep '^[^#]*!authenticate' /etc/sudoers /etc/sudoers.d/*
+   visudo #DO automatically?
+}
+

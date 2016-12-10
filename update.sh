@@ -12,6 +12,7 @@ function installBase () {
 	apt-get install clamav  # Package desc here
 	apt-get install libpam-cracklib # here
 	apt-get install unattended-upgrades
+	apt-get install openssh-server
 	# If package failed to download/does not exist, capture it, run apt-cache search <package> and show that output
 }
 
