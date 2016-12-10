@@ -106,6 +106,17 @@ debug "arg_h: ${arg_h}"
 # alert "Should be corrected immediately, therefore notify staff who can fix the problem. An example would be the loss of a primary ISP connection."
 # emergency "A \"panic\" condition usually affecting multiple apps/servers/sites. At this level it would usually notify all tech staff on call."
 
+### CHECKLIST: Users
+##############################################################################
+
+info "Starting Users phase."
+# source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/users.sh"
+
+info "Change sudo password:"
+passwd
+
+info "Finished Users phase."
+
 ### CHECKLIST: Security
 ##############################################################################
 
@@ -118,6 +129,9 @@ secureHomes
 
 info "Disabling guest account."
 disableGuest
+
+info "Changing password age."
+changePasswordAge
 
 info "Finished Security phase."
 

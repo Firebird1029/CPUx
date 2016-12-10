@@ -11,6 +11,7 @@ function installBase () {
 	apt-get install gnome-session-fallback # Package description here
 	apt-get install clamav  # Package desc here
 	apt-get install libpam-cracklib # here
+	apt-get install unattended-upgrades
 	# If package failed to download/does not exist, capture it, run apt-cache search <package> and show that output
 }
 
