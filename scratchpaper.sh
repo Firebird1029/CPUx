@@ -1,3 +1,1 @@
-for useri in "${ls /home/}"; do
-   
-done
+sed -i -e 's/abc/XYZ/g' /tmp/file.txt
