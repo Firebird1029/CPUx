@@ -10,7 +10,7 @@ function update () {
 
 function installBase () {
 	apt-get install gnome-session-fallback # Package description here
-	sudo apt-get install clamav  # Package desc here
+	apt-get install clamav  # Package desc here
 	# If package failed to download/does not exist, capture it, run apt-cache search <package> and show that output
 	exit
 }
