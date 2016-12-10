@@ -1,4 +1,4 @@
-if grep -Fxq "$FILENAME" my_list.txt
+if grep -Fxq "$FILENAME" /etc/lightdm/lightdm.conf
 then
     echo "found"
 else
