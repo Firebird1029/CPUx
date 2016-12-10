@@ -1,15 +1,6 @@
-fromParent=0
-
-function setupFirewall () {
-	ufw enable
-	exit
-}
-
-if [ "${BASH_SOURCE[0]}" != "${0}" ]; then
-	:
-	# Running from parent
+if grep -Fxq "$FILENAME" my_list.txt
+then
+    echo "found"
 else
-	# Running independently
-	echo "Running independently";
-	setupFirewall
+    echo "not found"
 fi
