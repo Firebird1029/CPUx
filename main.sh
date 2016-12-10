@@ -116,6 +116,9 @@ info "Setting up firewall and securing homes."
 setupFirewall
 secureHomes
 
+info "Disabling guest account."
+disableGuest
+
 info "Finished Security phase."
 
 

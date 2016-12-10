@@ -12,6 +12,14 @@ function secureHomes () {
 	exit
 }
 
+function disableGuest () {
+	if grep -q "allow-guest" "/etc/lightdm/lightdm.conf"; then
+		echo "Guest account already disabled."
+	else
+		echo "allow-guest=false" >> /etc/lightdm/lightdm.conf;
+	fi
+}
+
 if [ "${BASH_SOURCE[0]}" != "${0}" ]; then
 	:
 	# Running from parent
@@ -20,4 +28,5 @@ else
 	echo "Running independently";
 	setupFirewall
 	secureHomes
+	disableGuest
 fi
