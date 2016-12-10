@@ -19,9 +19,8 @@ function disableGuest () {
 }
 
 function changePasswordAge () {
-	sed -i "s/PASS_MAX_DAYS\t99999/PASS_MAX_DAYS\t90/g" bib
-	sed -i "s/PASS_MIN_DAYS\t0/PASS_MIN_DAYS\t10/g" bib
-	sed -i "s/PASS_WARN_AGE\t7/PASS_WARN_AGE\t90/g" bib
+	sed -i "s/PASS_MAX_DAYS\t99999/PASS_MAX_DAYS\t90/g" /etc/login.defs
+	sed -i "s/PASS_MIN_DAYS\t0/PASS_MIN_DAYS\t10/g" /etc/login.defs
 }
 
 if [ "${BASH_SOURCE[0]}" != "${0}" ]; then
