@@ -106,6 +106,18 @@ debug "arg_h: ${arg_h}"
 # alert "Should be corrected immediately, therefore notify staff who can fix the problem. An example would be the loss of a primary ISP connection."
 # emergency "A \"panic\" condition usually affecting multiple apps/servers/sites. At this level it would usually notify all tech staff on call."
 
+### CHECKLIST: Update
+##############################################################################
+
+info "Starting Update phase."
+source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/update.sh"
+
+info "Installing base software."
+update
+installBase
+
+info "Finished Update phase."
+
 ### CHECKLIST: Users
 ##############################################################################
 
@@ -135,4 +147,27 @@ changePasswordAge
 
 info "Finished Security phase."
 
+### CHECKLIST: Anti-Virus
+##############################################################################
 
+info "Starting Anti-Virus phase."
+
+info "Installing base software."
+update
+installBase
+
+info "Finished Anti-Virus phase."
+
+### CHECKLIST: Upgrade
+##############################################################################
+
+info "Starting Upgrade phase."
+# Already sourced from CHECKLIST: Update
+
+info "Upgrading all software."
+upgrade
+
+info "Upgrading distro."
+distUpgrade
+
+info "Finished Upgrade phase."
