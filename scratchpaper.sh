@@ -1,4 +1,4 @@
-if grep -Fxq "$FILENAME" /etc/lightdm/lightdm.conf
+if grep -Fxq "Seat" /etc/lightdm/lightdm.conf
 then
     echo "found"
 else
