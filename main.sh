@@ -7,6 +7,7 @@
 # main.sh
 
 # Usage:
+# sudo su
 # ./main.sh
 
 # Based on a template by BASH3 Boilerplate v2.1.0
