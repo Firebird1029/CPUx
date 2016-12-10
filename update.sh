@@ -15,6 +15,11 @@ function installBase () {
 	# If package failed to download/does not exist, capture it, run apt-cache search <package> and show that output
 }
 
+function enableAutomaticUpgrades () {
+	# Not finished yet! Does not work
+	dpkg-reconfigure -plow unattended-upgrades
+}
+
 function upgrade () {
 	apt-get upgrade
 }
