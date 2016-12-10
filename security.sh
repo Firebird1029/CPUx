@@ -3,13 +3,11 @@
 
 function setupFirewall () {
 	ufw enable
-	exit
 }
 
 function secureHomes () {
 	# move this to user
 	chmod 0750 /home/*
-	exit
 }
 
 function disableGuest () {
