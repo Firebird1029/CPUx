@@ -106,7 +106,7 @@ debug "arg_h: ${arg_h}"
 # alert "Should be corrected immediately, therefore notify staff who can fix the problem. An example would be the loss of a primary ISP connection."
 # emergency "A \"panic\" condition usually affecting multiple apps/servers/sites. At this level it would usually notify all tech staff on call."
 
-### Phase 1: Update
+### Update Phase
 ##############################################################################
 
 info "Starting Update phase."
@@ -118,26 +118,31 @@ installBase
 
 info "Finished Update phase."
 
-### Phase 2: Users
+### Users Phase
 ##############################################################################
 
 info "Starting Users phase."
-# source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/users.sh"
+source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/users.sh"
 
-info "Change sudo password:"
+info "Processing users. Follow instructions."
+processUsers
+
+info 'Changing sudo password. Set to "JasonTay1234--"'
 passwd
+
+info 'Select "yes" when asked to automatically download and install security updates.'
+enableAutomaticUpgrades
 
 info "Finished Users phase."
 
-### Phase 3: Security
+### Security Phase
 ##############################################################################
 
 info "Starting Security phase."
 source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/security.sh"
 
-info "Setting up firewall and securing homes."
+info "Setting up firewall."
 setupFirewall
-secureHomes
 
 info "Disabling guest account."
 disableGuest
@@ -147,16 +152,16 @@ changePasswordAge
 
 info "Finished Security phase."
 
-### Phase 4: Anti-Virus
+### Anti-Virus Phase
 ##############################################################################
 
 info "Starting Anti-Virus phase."
 
-# 
+
 
 info "Finished Anti-Virus phase."
 
-### Phase 5: Upgrade
+### Upgrade Phase
 ##############################################################################
 
 info "Starting Upgrade phase."

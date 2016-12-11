@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
-# Update
+# Update Functions
 
+# Notes
+# Never let any command below be prefixed with sudo.
+
+# Resources
 # https://help.ubuntu.com/community/AptGet/Howto
 
 function update () {
@@ -8,16 +12,17 @@ function update () {
 }
 
 function installBase () {
-	apt-get install gnome-session-fallback # Package description here
-	apt-get install clamav  # Package desc here
-	apt-get install libpam-cracklib # here
-	apt-get install unattended-upgrades
-	apt-get install openssh-server
-	# If package failed to download/does not exist, capture it, run apt-cache search <package> and show that output
+	apt-get install gnome-session-fallback # Generic software.
+	apt-get install openssh-server # An essential service. TODO: Add safe option to not install this.
+	apt-get install unattended-upgrades # Automatically look for updates. Will be used in Update Phase.
+
+	apt-get install libpam-cracklib # PAM software. Will be used in Security Phase.
+	apt-get install clamav  # Anti-virus. Will be used in AV Phase.
+	
+	# TODO: If package failed to download/does not exist, capture it, run apt-cache search <package> and show that output
 }
 
 function enableAutomaticUpgrades () {
-	# Not finished yet! Does not work
 	dpkg-reconfigure -plow unattended-upgrades
 }
 
@@ -37,4 +42,5 @@ else
 	echo "Running independently";
 	update
 	installBase
+	enableAutomaticUpgrades
 fi
