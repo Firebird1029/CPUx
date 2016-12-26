@@ -1,0 +1,32 @@
+HIDDEN SECURITY SETTINGS
+adadsfdafkdafs7dfsdasf8d5a7g8ads
+md5 sha516
+
+List of Users
+short	size	long name
+tim	8kb	timmy
+bob	4mb	bobby
+dad	5tb	daddy
+
+# Print out a list of long names
+
+Special Users
+mom-susie-mommy
+pa-joe-papa
+yo-bro-yoyo
+
+ChangeThisValueToZero=1
+ChangeThisValueToTwo=1
+
+exampleLine=mega city
+matchThisLineToTheLineAbove=mega
+changeThisLineToo=small town
+
+# Add "trees are green" below this comment
+
+
+# And "flowers are red" above this comment
+
+deleteThisLine
+
+# FINISH

@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=CyberPatriot README
+Type=Application
+Exec=x-www-browser "http://www.uscyberpatriot.org/Pages/Readme/readme_hs_tvadjak3cg.aspx"
+Icon=/opt/CyberPatriot/Icon.png

@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>CyberPatriot Scoring Report</title>
+<style type="text/css">
+h1 { text-align: center; }
+h2 { text-align: center; }
+body {
+  font-family: Arial, Verdana, sans-serif;
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #336699;
+}
+.red {color: red;}
+.green {color: green;}
+.blue {color: blue;}
+.main {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0px;
+  background-color: white;
+  width: 900px;
+  max-width: 100%;
+  min-width: 600px;
+  box-shadow: 0px 0px 12px #003366;
+}
+.text {
+  padding: 12px;
+}
+.center { text-align: center; }
+</style>
+<meta http-equiv="refresh" content="30;url=ScoringReport.html">
+</head>
+
+<body>
+<div class="main">
+<div class="text">
+
+<p align=center style="width:100%;text-align:center"><IMG align=middle style="float:middle" src="image001.jpg"></p>
+
+<h1>%TITLE%</h1>
+<h2>Report Generated At: %TIME% UTC</h2>
+%SCOREBOARD_MESSAGE%
+%TIME_MESSAGE%
+
+<script language="Javascript">
+var currentdate = new Date().getTime();
+gendate = Date.parse('%TIME% UTC');
+diff = Math.abs(currentdate - gendate);
+if ( gendate > 0 && diff > 1000 * 60 * 5 ) {
+	document.write('<span style="color:red"><h2>WARNING: CyberPatriot Scoring service may not be running</h2></span>');
+}
+</script>
+
+<h3 class="center">Approximate Image Running Time: %RUNNING_TIME%</h3>
+<h3 class="center">Approximate Team Running Time: %TEAM_RUNNING_TIME%</h3>
+<h3 class="center">Current Team ID: %TEAMID%</h3>
+%FEEDBACK_MESSAGE%
+<h2>%POINTS_RECEIVED% out of %POINTS_POSSIBLE% points received</h2>
+<p>%HEADER%<p>
+<h3>Connection Status: %STATUS%</h3>
+<p>
+Internet Connectivity Check: %INTERNET_STATUS% <br>
+CyberPatriot Connection Status: %CONNECTION_STATUS% <br>
+CyberPatriot Score Upload Status: %UPLOAD_STATUS% <br>
+</p>
+<h3>%PENALTIES_ASSESSED% penalties assessed, for a loss of %PENALTY_POINTS% points:</h3>
+<p>
+%PENALTY_DESCRIPTION%
+</p>
+<h3>%CHECKS_PASSED% out of %CHECKS_TOTAL% scored security issues fixed, for a gain of %CHECK_POINTS% points:</h3>
+<p>
+%FIXED_DESCRIPTION%
+</p>
+
+<p align=center style="text-align:center">The CyberPatriot
+Competition System is the property of the Air Force Association and the
+University of Texas at San Antonio.</p>
+
+<p align=center style="text-align:center">All rights reserved.</p>
+
+</div>
+</div>
+</body>
+</html>

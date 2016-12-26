@@ -22,6 +22,13 @@ function installBase () {
 	# TODO: If package failed to download/does not exist, capture it, run apt-cache search <package> and show that output
 }
 
+function upgradeEssentials () {
+	apt-get upgrade firefox
+	apt-get upgrade bash
+
+	apt-get upgrade vsftp # TODO do not do this if safe option
+}
+
 function enableAutomaticUpgrades () {
 	dpkg-reconfigure -plow unattended-upgrades
 }
@@ -42,5 +49,6 @@ else
 	echo "Running independently";
 	update
 	installBase
+	upgradeEssentials
 	enableAutomaticUpgrades
 fi

@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=CyberPatriot Scoreboard
+Type=Application
+Exec=x-www-browser "http://54.243.195.23"
+Icon=/opt/CyberPatriot/Icon.png

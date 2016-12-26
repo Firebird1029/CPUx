@@ -42,7 +42,7 @@ read -r -d '' __helptext <<-'EOF' || true # exits non-zero when EOF encountered
 EOF
 # Written by Brandon Yee and Jason Tay. Started on November 23, 2016, for Punahou School's CyberPatriot Club.
 
-source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/b3bp_main.sh"
+source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/functions/b3bp_main.sh"
 
 ### Command-line Argument Switches
 ##############################################################################
@@ -110,11 +110,17 @@ debug "arg_h: ${arg_h}"
 ##############################################################################
 
 info "Starting Update phase."
-source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/update.sh"
+source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/functions/update.sh"
 
 info "Installing base software."
 update
 installBase
+
+info "Upgrading essential software."
+upgradeEssentials
+
+info "Enabling automatic updates."
+enableAutomaticUpgrades
 
 info "Finished Update phase."
 
@@ -122,15 +128,15 @@ info "Finished Update phase."
 ##############################################################################
 
 info "Starting Users phase."
-source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/users.sh"
+source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/functions/users.sh"
 
 info "Processing users. Follow instructions."
 processUsers
 
-info 'Changing sudo password. Set to "JasonTay1234--"'
+info "Changing sudo password. Set to \"JasonTay1234--\""
 passwd
 
-info 'Select "yes" when asked to automatically download and install security updates.'
+info "Select \"yes\" when asked to automatically download and install security updates."
 enableAutomaticUpgrades
 
 info "Finished Users phase."
@@ -139,7 +145,7 @@ info "Finished Users phase."
 ##############################################################################
 
 info "Starting Security phase."
-source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/security.sh"
+source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/functions/security.sh"
 
 info "Setting up firewall."
 setupFirewall
@@ -157,7 +163,11 @@ info "Finished Security phase."
 
 info "Starting Anti-Virus phase."
 
+info "Updating virus definitions."
+freshclam
 
+info "Checking entire computer for viruses."
+clamscan -r -i --bell /
 
 info "Finished Anti-Virus phase."
 

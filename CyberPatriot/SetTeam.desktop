@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=CyberPatriot Set Unique Identifier
+Type=Application
+Exec=gksudo "/opt/CyberPatriot/SetTeam"
+Icon=/opt/CyberPatriot/Icon.png

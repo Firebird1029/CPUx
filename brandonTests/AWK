@@ -1,0 +1,15 @@
+#!/usr/bin/awk -f
+# Awk Playground
+
+BEGIN {
+	gsub(/ChangeThisValueToZero/, "&")
+	print str
+}
+
+FNR > 6 && FNR < 10 {
+	print $3
+}
+
+END {
+	
+}

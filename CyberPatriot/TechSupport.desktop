@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=CyberPatriot Tech Support
+Type=Application
+Exec=x-www-browser "https://fedgov.webex.com/fedgov/onstage/g.php?PRID=5632977f96b90348071a216c69912878"
+Icon=/opt/CyberPatriot/Icon.png

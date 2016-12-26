@@ -11,6 +11,7 @@ function setupFirewall () {
 function disableGuest () {
 	if grep -q "allow-guest" "/etc/lightdm/lightdm.conf"; then
 		echo "Guest account already disabled."
+		# TODO check if guest account is disabled or enabled
 	else
 		echo "allow-guest=false" >> /etc/lightdm/lightdm.conf
 	fi
