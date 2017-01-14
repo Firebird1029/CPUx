@@ -16,34 +16,22 @@ array_contains () {
     return $in
 }
 
-computerUsersString=$(awk -F':' '$2 ~ "\$" {print $1}' /etc/shadow | tr '\n' ',')
-IFS=',' read -r -a computerUsers <<< "$computerUsersString"
-unset computerUsers[0] # Remove root
+readmeUsers=("a" "c" "h")
+readmeAdmins=("b" "d" "g")
+computerUsers=("a" "e" "g")
+computerAdmins=("b" "f" "h")
 
-computerAdminsString=$(getent group sudo | cut -d: -f4)
-IFS=',' read -r -a computerAdmins <<< "$computerAdminsString"
+# /*
+#  * a is a proper, existing user
+#  * b is a proper, existing admin
+#  * c needs to be added to users list
+#  * d needs to be added to admins list
+#  * e needs to be deleted from users list
+#  * f needs to be deleted from admins list
+#  * g needs to be promoted from user to admin
+#  * h needs to be demoted from admin to user
+# */
 
-tempUsersArray=("${computerUsers[@]}")
-computerUsers=()
-
-# Remove Admins From Users List
-echo "Removing admins from user list."
-
-for i in "${tempUsersArray[@]}"; do
-	skipThisEntry=0
-
-	for j in "${computerAdmins[@]}"; do
-		if [ "$i" == "$j" ]; then
-			skipThisEntry=1
-		fi
-	done
-
-	if [ $skipThisEntry -eq 0 ]; then
-		computerUsers+=("$i")
-	fi
-done
-
-echo "${tempUsersArray[@]}"
 echo "${computerAdmins[@]}"
 echo "${computerUsers[@]}"
 
@@ -55,8 +43,8 @@ adminsToDemote=()
 usersToPromote=()
 
 for i in "${computerUsers[@]}"; do
-	if [[ ! $(array_contains readmeUsers "$i") ]]; then
-		if [[ $(array_contains readmeAdmins "$i") ]]; then
+	if [ ! $(array_contains readmeUsers "$i") ]; then
+		if [ $(array_contains readmeAdmins "$i") ]; then
 			# This user needs to be promoted from user to admin.
 			usersToPromote+=("$i")
 		else
