@@ -19,4 +19,4 @@ for i in "${computerAdmins[@]}"; do
 done
 
 computerUsers=("${computerUsers[@]/$delete}")
-echo $computerUsers
+echo "${computerUsers[*]}"
