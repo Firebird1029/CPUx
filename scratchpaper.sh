@@ -3,12 +3,19 @@
 # apt-get install vsftpd
 # gedit /etc/vsftpd.conf
 
-computerUsersString=$(awk -F':' '$2 ~ "\$" {print $1}' /etc/shadow | tr '\n' ',') # TODO does this work on ubuntu?
-IFS=',' read -r -a computerUsers <<< "$computerUsersString"
-echo $computerUsersString
-echo "${computerUsers[*]}"
-echo "${computerUsers[@]}"
-echo "${computerUsers[0]}"
-echo "${computerUsers[1]}"
-echo "${computerUsers[2]}"
-echo "${computerUsers[-1]}"
+computerUsersString=$(awk -F':' '$2 ~ "\$" {print $1}' /etc/shadow)
+IFS='\n' read -r -a computerUsers <<< "$computerUsersString"
+
+computerAdminsString=$(getent group sudo | cut -d: -f4)
+IFS=',' read -r -a computerAdmins <<< "$computerAdminsString"
+
+delete=()
+for i in "${computerAdmins[@]}"; do
+	for j in "${computerUsers[@]}"; do
+		if [ "$i" == "$j" ]; then
+			delete+=("$j")
+		fi
+	done
+done
+
+computerUsers=("${computerUsers[@]/$delete}")
