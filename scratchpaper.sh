@@ -55,8 +55,8 @@ adminsToDemote=()
 usersToPromote=()
 
 for i in "${computerUsers[@]}"; do
-	if [ ! $(array_contains readmeUsers "$i") ]; then
-		if [ $(array_contains readmeAdmins "$i") ]; then
+	if [[ ! $(array_contains readmeUsers "$i") ]]; then
+		if [[ $(array_contains readmeAdmins "$i") ]]; then
 			# This user needs to be promoted from user to admin.
 			usersToPromote+=("$i")
 		else
