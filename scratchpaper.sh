@@ -27,5 +27,6 @@ done
 
 computerUsers=("${computerUsers[@]/$delete}")
 
+echo "${delete[@]}"
 echo "${computerAdmins[@]}"
 echo "${computerUsers[@]}"
