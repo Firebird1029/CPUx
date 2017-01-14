@@ -18,6 +18,7 @@ computerAdmins=(b c)
 tempUsersArray="${computerUsers[@]}"
 computerUsers=()
 for i in "${tempUsersArray[@]}"; do
+	echo "$i"
 	skipThisEntry="dontskip"
 
 	for j in "${computerAdmins[@]}"; do
