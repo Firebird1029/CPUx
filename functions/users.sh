@@ -4,6 +4,15 @@
 # Notes
 # Never let any command below be prefixed with sudo.
 
+# http://serverfault.com/questions/477503/check-if-array-is-empty-in-bash
+if [ ${#errors[@]} -eq 0 ]; then
+		# Array is empty
+		:
+	else
+		# Array contains something
+		:
+	fi
+
 # http://stackoverflow.com/questions/7442417/how-to-sort-an-array-in-bash
 function qsort () {
 	local pivot i smaller=() larger=()
@@ -42,6 +51,7 @@ function array_contains () {
 	return $in
 }
 
+# http://stackoverflow.com/questions/3685970/check-if-an-array-contains-a-value
 function contains () {
 	local n=$#
 	local value=${!n}
@@ -169,18 +179,65 @@ function processUsers () {
 
 	### Confirmation Screen
 	##############################################################################
-	echo "These users will be deleted:"
-	echo "${usersToDelete[@]}"
-	echo; echo "These admins will be deleted:"
-	echo "${adminsToDelete[@]}"
-	echo; echo "These users will be added:"
-	echo "${usersToAdd[@]}"
-	echo; echo "These admins will be added:"
-	echo "${adminsToAdd[@]}"
-	echo; echo "These admins will be demoted:"
-	echo "${adminsToDemote[@]}"
-	echo; echo "These users will be promoted:"
-	echo "${usersToPromote[@]}"
+	if [ ${#usersToDelete[@]} -eq 0 ]; then
+		# Array is empty
+		echo "No users will be deleted."
+	else
+		# Array contains something
+		echo "These users will be deleted:"
+		echo "${usersToDelete[@]}"
+	fi
+	echo
+	
+	if [ ${#adminsToDelete[@]} -eq 0 ]; then
+		# Array is empty
+		echo "No admins will be deleted."
+	else
+		# Array contains something
+		echo "These admins will be deleted:"
+		echo "${adminsToDelete[@]}"
+	fi
+	echo
+
+	if [ ${#usersToAdd[@]} -eq 0 ]; then
+		# Array is empty
+		echo "No users will be added."
+	else
+		# Array contains something
+		echo "These users will be added:"
+		echo "${usersToAdd[@]}"
+	fi
+	echo
+
+	if [ ${#adminsToAdd[@]} -eq 0 ]; then
+		# Array is empty
+		echo "No admins will be added."
+	else
+		# Array contains something
+		echo "These admins will be added:"
+		echo "${adminsToAdd[@]}"
+	fi
+	echo
+
+	if [ ${#adminsToDemote[@]} -eq 0 ]; then
+		# Array is empty
+		echo "No admins will be demoted."
+	else
+		# Array contains something
+		echo "These admins will be demoted:"
+		echo "${adminsToDemote[@]}"
+	fi
+	echo
+
+	if [ ${#usersToPromote[@]} -eq 0 ]; then
+		# Array is empty
+		echo "No users will be promoted."
+	else
+		# Array contains something
+		echo "These users will be promoted:"
+		echo "${usersToPromote[@]}"
+	fi
+	echo
 
 	confirmation=0
 	echo; echo; echo "Confirm that these lists are correct and complete before proceeding."
