@@ -44,11 +44,17 @@ adminsToAdd=()
 adminsToDemote=()
 usersToPromote=()
 
+if echo ${arr[@]} | grep -q -w "d"; then 
+    echo "is in array"
+else 
+    echo "is not in array"
+fi
+
 for i in "${computerUsers[@]}"; do
 	echo "$i"
-	if [ ! $(array_contains readmeUsers "$i") ]; then
+	if [ ! echo ${readmeUsers[@]} | grep -q -w "$i" ]; then
 		echo "readmeUsers does not contain " "$i"
-		if [ $(array_contains readmeAdmins "$i") ]; then
+		if [ echo ${readmeAdmins[@]} | grep -q -w "$i" ]; then
 			# This user needs to be promoted from user to admin.
 			echo "readmeAdmins contains " "$i"
 			usersToPromote+=("$i")
