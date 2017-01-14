@@ -7,3 +7,5 @@ IFS='' read -r -a readmeUsers < /tmp/users.txt
 
 IFS=$'\n' readmeUsers=($(sort <<<"${readmeUsers[*]}"))
 unset IFS
+
+echo "${readmeUsers[@]}"
