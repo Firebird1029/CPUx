@@ -12,21 +12,17 @@ IFS=',' read -r -a computerAdmins <<< "$computerAdminsString"
 # echo "${computerAdmins[@]}"
 # echo "${computerUsers[@]}"
 
-delete=()
-for i in "${computerAdmins[@]}"; do
-	for j in "${computerUsers[@]}"; do
-		if [ "$i" == "$j" ]; then
-			echo "equal!"
-			delete+=("$j")
+tempUsersArray="${computerUsers[@]}"
+computerUsers=()
+for i in "${tempUsersArray[@]}"; do
+	for j in "${computerAdmins[@]}"; do
+		if [ "$i" != "$j" ]; then
+			echo "Add this entry"
+			computerUsers+=("$j")
 		fi
 	done
 done
 
-# echo "${computerAdmins[@]}"
-# echo "${computerUsers[@]}"
 
-computerUsers=("${computerUsers[@]/$delete}")
-
-echo "${delete[@]}"
 echo "${computerAdmins[@]}"
 echo "${computerUsers[@]}"
