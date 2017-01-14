@@ -23,6 +23,6 @@ for i in "${tempUsersArray[@]}"; do
 	done
 done
 
-
+echo "${tempUsersArray[@]}"
 echo "${computerAdmins[@]}"
 echo "${computerUsers[@]}"
