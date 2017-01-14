@@ -6,8 +6,9 @@
 computerAdminsString=$(getent group sudo | cut -d: -f4)
 IFS=',' read -r -a computerAdmins <<< "$computerAdminsString"
 echo $computerAdminsString
-echo $computerAdmins[*]
-echo $computerAdmins[0]
-echo $computerAdmins[1]
-echo $computerAdmins[2]
-echo $computerAdmins[-1]
+echo "${computerAdmins[*]}"
+echo "${computerAdmins[@]}"
+echo "${computerAdmins[0]}"
+echo "${computerAdmins[1]}"
+echo "${computerAdmins[2]}"
+echo "${computerAdmins[-1]}"
