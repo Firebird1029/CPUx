@@ -73,6 +73,8 @@ function processUsers () {
 
 	### Get Computer Users & Admins
 	##############################################################################
+	echo "Getting computer users and admins."
+
 	computerUsersString=$(awk -F':' '$2 ~ "\$" {print $1}' /etc/shadow | tr '\n' ',')
 	IFS=',' read -r -a computerUsers <<< "$computerUsersString"
 	unset computerUsers[0] # Remove root
@@ -84,6 +86,8 @@ function processUsers () {
 	computerUsers=()
 
 	# Remove Admins From Users List
+	echo "Removing admins from user list."
+
 	for i in "${tempUsersArray[@]}"; do
 		skipThisEntry=0
 
@@ -93,7 +97,6 @@ function processUsers () {
 			fi
 		done
 
-		echo "$skipThisEntry"
 		if [ $skipThisEntry -eq 0 ]; then
 			computerUsers+=("$i")
 		fi
@@ -102,6 +105,7 @@ function processUsers () {
 	### Analyze User Lists
 	##############################################################################
 	# See userAlgorithm.js for original algorithm.
+	echo "Analyzing user lists."
 
 	usersToDelete=()
 	adminsToDelete=()
@@ -148,8 +152,36 @@ function processUsers () {
 		fi
 	done
 
+	### Confirmation Screen
+	##############################################################################
+	echo "These users will be deleted:"
+	echo "${usersToDelete[@]}"
+	echo; echo "These admins will be deleted:"
+	echo "${adminsToDelete[@]}"
+	echo; echo "These users will be added:"
+	echo "${usersToAdd[@]}"
+	echo; echo "These admins will be added:"
+	echo "${adminsToAdd[@]}"
+	echo; echo "These admins will be demoted:"
+	echo "${adminsToDemote[@]}"
+	echo; echo "These users will be promoted:"
+	echo "${usersToPromote[@]}"
+	
+	confirmation=0
+	echo; echo; echo "Confirm that these lists are correct and complete before proceeding."
+	read -p "Are you sure you want to continue? " -n 1 -r; echo
+	read -p "Are you very, very sure you want to continue? " -n 1 -r; echo
+	if [[ $REPLY =~ ^[Yy]$ ]]
+	then
+		confirmation=1
+	fi
+	if [[ $confirmation -eq 0 ]]; then
+		exit
+	fi
+
 	### Delete Users & Admins
 	##############################################################################
+	echo "Deleting users and admins."
 	
 	# Do not delete admin users or yourself!
 
@@ -165,6 +197,7 @@ function processUsers () {
 
 	### Add Users & Admins
 	##############################################################################
+	echo "Adding users and admins."
 	
 	# http://stackoverflow.com/questions/2150882/how-to-automatically-add-user-account-and-password-with-a-bash-script
 	for useri in "${usersToAdd[@]}"; do
@@ -178,6 +211,7 @@ function processUsers () {
 
 	### Demote Admins
 	##############################################################################
+	echo "Demoting admins."
 	
 	for useri in "${adminsToDemote[@]}"; do
 		deluser $useri sudo
@@ -185,6 +219,7 @@ function processUsers () {
 
 	### Promote Users
 	##############################################################################
+	echo "Promoting users."
 
 	# TODO: repeated lines of code in Add Users & Admins section
 	for useri in "${usersToPromote[@]}"; do
@@ -193,6 +228,7 @@ function processUsers () {
 	
 	### Set All Users' Passwords
 	##############################################################################
+	echo "Setting all users' passwords."
 	
 	# Get Computer Users Again
 	computerUsersString=$(awk -F':' '$2 ~ "\$" {print $1}' /etc/shadow | tr '\n' ',')

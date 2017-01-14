@@ -109,20 +109,26 @@ debug "arg_h: ${arg_h}"
 ### Update Phase
 ##############################################################################
 
-info "Starting Update phase."
-source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/functions/update.sh"
+read -p "Run the Update Phase? (yes if first time running this script) " -n 1 -r; echo
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
 
-info "Installing base software."
-update
-installBase
+  info "Starting Update phase."
+  source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/functions/update.sh"
 
-info "Upgrading essential software."
-upgradeEssentials
+  info "Installing base software."
+  update
+  installBase
 
-info "Enabling automatic updates."
-enableAutomaticUpgrades
+  info "Upgrading essential software."
+  upgradeEssentials
 
-info "Finished Update phase."
+  info "Enabling automatic updates."
+  enableAutomaticUpgrades
+
+  info "Finished Update phase."
+  
+fi
 
 ### Users Phase
 ##############################################################################
