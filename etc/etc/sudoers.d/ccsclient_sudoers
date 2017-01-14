@@ -1,0 +1,5 @@
+# CyberPatriot configuration
+Cmnd_Alias	CCS = /opt/CyberPatriot/SetTeam
+%sudo		ALL=(ALL)	NOPASSWD: CCS
+Defaults!CCS !requiretty
+

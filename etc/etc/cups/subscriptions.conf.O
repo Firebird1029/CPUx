@@ -1,0 +1,12 @@
+# Subscription configuration file for CUPS v1.7.2
+# Written by cupsd
+NextSubscriptionId 35
+<Subscription 34>
+Events all
+Owner anonymous
+Recipient dbus://
+LeaseDuration 86400
+Interval 0
+ExpirationTime 1481920997
+NextEventId 12
+</Subscription>

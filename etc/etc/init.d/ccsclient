@@ -1,0 +1,47 @@
+#! /bin/sh -e
+#
+### BEGIN INIT INFO
+# Provides:          ccsclient
+# Required-Start:    $syslog $local_fs $remote_fs
+# Required-Stop:     $syslog $local_fs $remote_fs
+# Default-Start:     2 3 4 5
+# Default-Stop:      S 0 1 6
+# Short-Description: CCS Client
+# Description:       init script for the CCS Client
+### END INIT INFO
+#
+# Author:	Keith Harrison <keith.harrison@utsa.edu>
+#
+
+set -e
+
+PATH=/bin:/usr/bin:/sbin:/usr/sbin
+DAEMON=/opt/CyberPatriot/CCSClient
+
+test -x $DAEMON || exit 0
+
+. /lib/lsb/init-functions
+
+case "$1" in
+    start)
+	log_daemon_msg "Starting CCS Client" "CCSClient"
+	start-stop-daemon --start --quiet --pidfile /var/run/CCSClient.pid --exec $DAEMON --make-pidfile --background
+	log_end_msg $?
+    ;;
+  stop)
+	log_daemon_msg "Stopping CCS Client" "CCSClient"
+	start-stop-daemon --stop --quiet --pidfile /var/run/CCSClient.pid
+	log_end_msg $?
+    ;;
+  force-reload|restart)
+    $0 stop
+    $0 start
+    ;;
+  *)
+    echo "Usage: /etc/init.d/ccsclient {start|stop|restart|force-reload}"
+    exit 1
+    ;;
+esac
+
+exit 0
+

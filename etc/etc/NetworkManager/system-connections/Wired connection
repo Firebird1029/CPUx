@@ -1,0 +1,14 @@
+[802-3-ethernet]
+duplex=full
+
+[connection]
+id=Wired connection
+uuid=650c47b4-2a6f-4d09-a6ef-e9af942965bb
+type=802-3-ethernet
+timestamp=1476218933
+
+[ipv6]
+method=auto
+
+[ipv4]
+method=auto

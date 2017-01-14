@@ -1,0 +1,59 @@
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+libuuid:x:100:101::/var/lib/libuuid:
+syslog:x:101:104::/home/syslog:/bin/false
+messagebus:x:102:106::/var/run/dbus:/bin/false
+usbmux:x:103:46:usbmux daemon,,,:/home/usbmux:/bin/false
+dnsmasq:x:104:65534:dnsmasq,,,:/var/lib/misc:/bin/false
+avahi-autoipd:x:105:113:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/bin/false
+kernoops:x:106:65534:Kernel Oops Tracking Daemon,,,:/:/bin/false
+rtkit:x:107:114:RealtimeKit,,,:/proc:/bin/false
+saned:x:108:115::/home/saned:/bin/false
+whoopsie:x:109:116::/nonexistent:/bin/false
+speech-dispatcher:x:110:29:Speech Dispatcher,,,:/var/run/speech-dispatcher:/bin/sh
+avahi:x:111:117:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/bin/false
+lightdm:x:112:118:Light Display Manager:/var/lib/lightdm:/bin/false
+colord:x:113:121:colord colour management daemon,,,:/var/lib/colord:/bin/false
+hplip:x:114:7:HPLIP system user,,,:/var/run/hplip:/bin/false
+pulse:x:115:122:PulseAudio daemon,,,:/var/run/pulse:/bin/false
+ygagarin:x:1002:1002:ygagarin:/home/ygagarin:/bin/bash
+vkomarov:x:1003:1003:vkomarov:/home/vkomarov:/bin/bash
+jglenn:x:1004:1004:jglenn:/home/jglenn:/bin/bash
+vtereshkova:x:1005:1005:vtereshkova:/home/vtereshkova:/bin/bash
+gcooper:x:1006:1006:gcooper:/home/gcooper:/bin/bash
+fborman:x:1007:1007:fborman:/home/fborman:/bin/bash
+jlovell:x:1008:1008:jlovell:/home/jlovell:/bin/bash
+wanders:x:1009:1009:wanders:/home/wanders:/bin/bash
+baldrin:x:1011:1011:baldrin:/home/baldrin:/bin/bash
+mcollins:x:1012:1012:mcollins:/home/mcollins:/bin/bash
+jswigert:x:1013:1013:jswigert:/home/jswigert:/bin/bash
+fhaise:x:1014:1014:fhaise:/home/fhaise:/bin/bash
+wschirra:x:1017:1017:wschirra:/home/wschirra:/bin/bash
+ggrissom:x:1018:1018:ggrissom:/home/ggrissom:/bin/bash
+vremek:x:1019:1019:vremek:/home/vremek:/bin/bash
+mhermaszewki:x:1020:1020:mhermaszewki:/home/mhermaszewki:/bin/bash
+sjahn:x:1021:1021:sjahn:/home/sjahn:/bin/bash
+givanov:x:1022:1022:givanov:/home/givanov:/bin/bash
+mysql:x:116:125:MySQL Server,,,:/nonexistent:/bin/false
+postgres:x:117:126:PostgreSQL administrator,,,:/var/lib/postgresql:/bin/bash
+ashepard:x:1027:1028:ashepard:/home/ashepard:/bin/bash
+narmstrong:x:1000:1001:narmstrong,,,:/home/narmstrong:/bin/bash
+dslayton:x:1001:1010:User,,,:/home/dslayton:/bin/bash
+scarpenter:x:1010:1015:User,,,:/home/scarpenter:/bin/bash
+sshd:x:118:65534::/var/run/sshd:/usr/sbin/nologin
