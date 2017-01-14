@@ -16,6 +16,19 @@ array_contains () {
     return $in
 }
 
+function contains() {
+    local n=$#
+    local value=${!n}
+    for ((i=1;i < $#;i++)) {
+        if [ "${!i}" == "${value}" ]; then
+            echo "y"
+            return 0
+        fi
+    }
+    echo "n"
+    return 1
+}
+
 readmeUsers=("a" "c" "h")
 readmeAdmins=("b" "d" "g")
 computerUsers=("a" "e" "g")
@@ -52,7 +65,7 @@ fi
 
 for i in "${computerUsers[@]}"; do
 	echo "$i"
-	if [ ! $(echo ${readmeUsers[@]} | grep -q -w "$i") ]; then
+	if [ ! $(contains "${readmeUsers[@]}" "$i") == "y" ]; then
 		echo "readmeUsers does not contain " "$i"
 		if [ $(echo ${readmeAdmins[@]} | grep -q -w "$i") ]; then
 			# This user needs to be promoted from user to admin.
