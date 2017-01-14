@@ -19,16 +19,16 @@ tempUsersArray=("${computerUsers[@]}")
 computerUsers=()
 for i in "${tempUsersArray[@]}"; do
 	echo "$i"
-	skipThisEntry="dontskip"
+	skipThisEntry=0
 
 	for j in "${computerAdmins[@]}"; do
 		if [ "$i" == "$j" ]; then
-			skipThisEntry="skip"
+			skipThisEntry=1
 		fi
 	done
 
 	echo "$skipThisEntry"
-	if [ "$skipThisEntry" == "dontskip" ]; then
+	if [ $skipThisEntry -eq 0 ]; then
 		computerUsers+=("$i")
 	fi
 done
