@@ -110,8 +110,7 @@ debug "arg_h: ${arg_h}"
 ##############################################################################
 
 read -p "Run the Update Phase? (yes if first time running this script) " -n 1 -r; echo
-if [[ $REPLY =~ ^[Yy]$ ]]
-then
+if [[ $REPLY =~ ^[Yy]$ ]]; then
 
   info "Starting Update phase."
   source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/functions/update.sh"
@@ -127,25 +126,30 @@ then
   enableAutomaticUpgrades
 
   info "Finished Update phase."
-  
+
 fi
 
 ### Users Phase
 ##############################################################################
 
-info "Starting Users phase."
-source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/functions/users.sh"
+read -p "Run the Users Phase? (yes if first time running this script) " -n 1 -r; echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
 
-info "Processing users. Follow instructions."
-processUsers
+  info "Starting Users phase."
+  source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/functions/users.sh"
 
-info "Changing sudo password. Set to \"JasonTay1234--\""
-passwd
+  info "Processing users. Follow instructions."
+  processUsers
 
-info "Select \"yes\" when asked to automatically download and install security updates."
-enableAutomaticUpgrades
+  info "Changing sudo password. Set to \"JasonTay1234--\""
+  passwd
 
-info "Finished Users phase."
+  info "Select \"yes\" when asked to automatically download and install security updates."
+  enableAutomaticUpgrades
+
+  info "Finished Users phase."
+
+fi
 
 ### Security Phase
 ##############################################################################

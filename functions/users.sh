@@ -173,10 +173,10 @@ function processUsers () {
 	echo; echo; echo "Confirm that these lists are correct and complete before proceeding."
 	read -p "Are you sure you want to continue? " -n 1 -r; echo
 	read -p "Are you very, very sure you want to continue? " -n 1 -r; echo
-	if [[ $REPLY =~ ^[Yy]$ ]]
-	then
+	if [[ $REPLY =~ ^[Yy]$ ]]; then
 		confirmation=1
 	fi
+	
 	if [[ $confirmation -eq 0 ]]; then
 		exit
 	fi
