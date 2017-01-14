@@ -15,12 +15,17 @@ IFS=',' read -r -a computerAdmins <<< "$computerAdminsString"
 tempUsersArray="${computerUsers[@]}"
 computerUsers=()
 for i in "${tempUsersArray[@]}"; do
+	skipThisEntry=0
+
 	for j in "${computerAdmins[@]}"; do
-		if [ "$i" != "$j" ]; then
-			echo "Add this entry"
-			computerUsers+=("$j")
+		if [ "$i" == "$j" ]; then
+			skipThisEntry=1
 		fi
 	done
+
+	if [ $skipThisEntry -eq 0 ]; then
+		computerUsers+=("$i")
+	fi
 done
 
 echo "${tempUsersArray[@]}"
