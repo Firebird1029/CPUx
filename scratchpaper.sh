@@ -67,7 +67,7 @@ for i in "${computerUsers[@]}"; do
 	echo "$i"
 	if [ ! $(contains "${readmeUsers[@]}" "$i") == "y" ]; then
 		echo "readmeUsers does not contain " "$i"
-		if [ $(echo ${readmeAdmins[@]} | grep -q -w "$i") ]; then
+		if [ $(contains "${readmeAdmins[@]}" "$i") == "y" ]; then
 			# This user needs to be promoted from user to admin.
 			echo "readmeAdmins contains " "$i"
 			usersToPromote+=("$i")
