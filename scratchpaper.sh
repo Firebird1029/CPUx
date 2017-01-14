@@ -3,6 +3,19 @@
 # apt-get install vsftpd
 # gedit /etc/vsftpd.conf
 
+array_contains () { 
+    local array="$1[@]"
+    local seeking=$2
+    local in=1
+    for element in "${!array}"; do
+        if [[ $element == $seeking ]]; then
+            in=0
+            break
+        fi
+    done
+    return $in
+}
+
 computerUsersString=$(awk -F':' '$2 ~ "\$" {print $1}' /etc/shadow | tr '\n' ',')
 IFS=',' read -r -a computerUsers <<< "$computerUsersString"
 unset computerUsers[0] # Remove root
