@@ -12,8 +12,8 @@
 # echo "${computerAdmins[@]}"
 # echo "${computerUsers[@]}"
 
-computerUsers=(a b c d)
-computerAdmins=(b c)
+computerUsers=( a b c d )
+computerAdmins=( b c )
 
 tempUsersArray="${computerUsers[@]}"
 computerUsers=()
