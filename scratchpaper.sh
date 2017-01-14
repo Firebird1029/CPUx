@@ -9,6 +9,9 @@ IFS='\n' read -r -a computerUsers <<< "$computerUsersString"
 computerAdminsString=$(getent group sudo | cut -d: -f4)
 IFS=',' read -r -a computerAdmins <<< "$computerAdminsString"
 
+echo "${computerAdmins[@]}"
+echo "${computerUsers[@]}"
+
 delete=()
 for i in "${computerAdmins[@]}"; do
 	for j in "${computerUsers[@]}"; do
@@ -18,5 +21,10 @@ for i in "${computerAdmins[@]}"; do
 	done
 done
 
+echo "${computerAdmins[@]}"
+echo "${computerUsers[@]}"
+
 computerUsers=("${computerUsers[@]/$delete}")
-echo "${computerUsers[*]}"
+
+echo "${computerAdmins[@]}"
+echo "${computerUsers[@]}"
