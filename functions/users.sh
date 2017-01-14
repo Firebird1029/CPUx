@@ -51,6 +51,7 @@ function processUsers () {
 	# http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_08_02.html
 	echo "Enter users (NOT admins) listed in README. Enter one user per line, then use the \"%\" character to exit out of the read command. List users here:"
 	read -a readmeUsers -d "%" # Get user input.
+	echo; echo;
 	# echo ""; echo "README Users: "${readmeUsers[*]}
 
 	IFS=$'\n' readmeUsers=($(sort <<<"${readmeUsers[*]}"))
@@ -65,6 +66,7 @@ function processUsers () {
 	##############################################################################
 	echo "Enter admins (NOT standard users) listed in README. Enter one user per line, then use the \"%\" character to exit out of the read command. List admins here:"
 	read -a readmeAdmins -d "%"
+	echo; echo;
 
 	IFS=$'\n' readmeAdmins=($(sort <<<"${readmeAdmins[*]}"))
 	unset IFS
@@ -166,7 +168,7 @@ function processUsers () {
 	echo "${adminsToDemote[@]}"
 	echo; echo "These users will be promoted:"
 	echo "${usersToPromote[@]}"
-	
+
 	confirmation=0
 	echo; echo; echo "Confirm that these lists are correct and complete before proceeding."
 	read -p "Are you sure you want to continue? " -n 1 -r; echo
