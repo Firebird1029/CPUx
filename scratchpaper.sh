@@ -52,9 +52,9 @@ fi
 
 for i in "${computerUsers[@]}"; do
 	echo "$i"
-	if [ ! echo ${readmeUsers[@]} | grep -q -w "$i" ]; then
+	if [ ! $(echo ${readmeUsers[@]} | grep -q -w "$i") ]; then
 		echo "readmeUsers does not contain " "$i"
-		if [ echo ${readmeAdmins[@]} | grep -q -w "$i" ]; then
+		if [ $(echo ${readmeAdmins[@]} | grep -q -w "$i") ]; then
 			# This user needs to be promoted from user to admin.
 			echo "readmeAdmins contains " "$i"
 			usersToPromote+=("$i")
