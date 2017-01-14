@@ -18,15 +18,15 @@ computerAdmins=(b c)
 tempUsersArray="${computerUsers[@]}"
 computerUsers=()
 for i in "${tempUsersArray[@]}"; do
-	skipThisEntry=0
+	skipThisEntry="dont skip"
 
 	for j in "${computerAdmins[@]}"; do
 		if [ "$i" == "$j" ]; then
-			skipThisEntry=1
+			skipThisEntry="skip"
 		fi
 	done
 
-	if [ $skipThisEntry -eq 0 ]; then
+	if [ $skipThisEntry == "dont skip" ]; then
 		computerUsers+=("$i")
 	fi
 done
