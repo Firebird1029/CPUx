@@ -68,15 +68,20 @@ function processUsers () {
 
 	### Get Computer Users & Admins
 	##############################################################################
-	computerUsers=$(awk -F':' '$2 ~ "\$" {print $1}' /etc/shadow) # TODO does this work on ubuntu?
-	computerAdmins=$(awk "FNR > 12 && FNR < 14 {print $1}") # TODO change FNR numbers to sudo line
+	computerUsersString=$(awk -F':' '$2 ~ "\$" {print $1}' /etc/shadow) # TODO does this work on ubuntu?
+	IFS='\n' read -r -a computerUsers <<< "$computerUsersString"
+
+	computerAdminsString=$(getent group sudo | cut -d: -f4)
+	IFS=',' read -r -a computerAdmins <<< "$computerAdminsString"
 	
 	### Analyze User Lists
 	##############################################################################
 	# See userAlgorithm.js for original algorithm.
 
 	usersToDelete=()
+	adminsToDelete=()
 	usersToAdd=()
+	adminsToAdd=()
 	adminsToDemote=()
 	usersToPromote=()
 
@@ -84,8 +89,10 @@ function processUsers () {
 		if [ ! $(array_contains readmeUsers "$i") ]; then
 			if [ $(array_contains readmeAdmins "$i") ]; then
 				# This user needs to be promoted from user to admin.
+				usersToPromote+=("$i")
 			else
 				# This user needs to be deleted from the users list.
+				usersToDelete+=("$i")
 			fi
 		fi
 	done
@@ -94,8 +101,10 @@ function processUsers () {
 		if [ ! $(array_contains readmeAdmins "$i") ]; then
 			if [ $(array_contains readmeUsers "$i") ]; then
 				# This admin needs to be demoted from admin to user.
+				adminsToDemote+=("$i")
 			else
 				# This admin needs to be deleted from the admin list.
+				adminsToDelete+=("$i")
 			fi
 		fi
 	done
@@ -103,16 +112,18 @@ function processUsers () {
 	for i in "${readmeUsers[@]}"; do
 		if [ ! $(array_contains computerUsers "$i") ]; then
 			# This user needs to be added to the users list.
+			usersToAdd+=("$i")
 		fi
 	done
 
 	for i in "${readmeAdmins[@]}"; do
 		if [ ! $(array_contains computerAdmins "$i") ]; then
 			# This user needs to be added to the admins list.
+			adminsToAdd+=("$i")
 		fi
 	done
 
-	### Delete Users
+	### Delete Users & Admins
 	##############################################################################
 	
 	# Do not delete admin users or yourself!
@@ -122,13 +133,22 @@ function processUsers () {
 		# rm -r /home/username # TODO enable on unsafe option
 	done
 
-	### Add Users
+	for useri in "${adminsToDelete[@]}"; do
+		userdel $useri
+		# rm -r /home/username # TODO enable on unsafe option
+	done
+
+	### Add Users & Admins
 	##############################################################################
 	
 	# http://stackoverflow.com/questions/2150882/how-to-automatically-add-user-account-and-password-with-a-bash-script
 	for useri in "${usersToAdd[@]}"; do
-		:
-		# adduser --quiet --disabled-password --shell /bin/bash --home /home/$useri --gecos "User" $useri # TODO decode this line
+		adduser --quiet --disabled-password --shell /bin/bash --home /home/$useri --gecos "User" $useri # TODO decode this line
+	done
+
+	for useri in "${adminsToAdd[@]}"; do
+		adduser --quiet --disabled-password --shell /bin/bash --home /home/$useri --gecos "User" $useri
+		adduser $useri sudo
 	done
 
 	### Demote Admins
@@ -141,7 +161,10 @@ function processUsers () {
 	### Promote Users
 	##############################################################################
 
-	# TODO: easy to do, just research it
+	# TODO: repeated lines of code in Add Users & Admins section
+	for useri in "${usersToPromote[@]}"; do
+		adduser $useri sudo
+	done
 	
 	### Set All Users' Passwords
 	##############################################################################
