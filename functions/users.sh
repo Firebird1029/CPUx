@@ -35,24 +35,25 @@ function processUsers () {
 	### Get README Users
 	##############################################################################
 	# http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_08_02.html
-	echo "Enter users (NOT admins) listed in README. Enter one user per line, then use the \"%\" character to exit out of the read command. List users here:"
+	echo "Put a list of users (NOT admins) in a file, saved as: /tmp/users.txt"
+	readmeUsers=()
 	while IFS='' read -r line || [[ -n "$line" ]]; do
-		echo "Text read from file: $line"
-	done < "$1"
+		readmeUsers+=("$line") # TODO find a better way to do this
+	done < /tmp/users.txt
 
 	IFS=$'\n' readmeUsers=($(sort <<<"${readmeUsers[*]}"))
 	unset IFS
 	
 	### Get README Admins
 	##############################################################################
-	echo "Enter admins (NOT standard users) listed in README. Enter one user per line, then use the \"%\" character to exit out of the read command. List admins here:"
-	read -a readmeAdmins -d "%"
-	echo; echo;
+	echo "Put a list of admins (NOT users) in a file, saved as: /tmp/admins.txt"
+	readmeAdmins=()
+	while IFS='' read -r line || [[ -n "$line" ]]; do
+		readmeAdmins+=("$line") # TODO find a better way to do this
+	done < /tmp/admins.txt
 
 	IFS=$'\n' readmeAdmins=($(sort <<<"${readmeAdmins[*]}"))
 	unset IFS
-	# qsort ${readmeAdmins[*]} # Sort users.
-	# readmeAdmins=(${qsort_ret[@]}) # Store sorted list in a variable.
 
 	### Get Computer Users & Admins
 	##############################################################################
