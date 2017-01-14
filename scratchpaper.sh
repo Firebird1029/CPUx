@@ -4,11 +4,11 @@
 # gedit /etc/vsftpd.conf
 
 computerUsersString=$(awk -F':' '$2 ~ "\$" {print $1}' /etc/shadow) # TODO does this work on ubuntu?
-IFS='' read -r -a computerUsers <<< "$computerUsersString"
+# IFS='' read -r -a computerUsers <<< "$computerUsersString"
 echo $computerUsersString
-echo "${computerUsers[*]}"
-echo "${computerUsers[@]}"
-echo "${computerUsers[0]}"
-echo "${computerUsers[1]}"
-echo "${computerUsers[2]}"
-echo "${computerUsers[-1]}"
+# echo "${computerUsers[*]}"
+# echo "${computerUsers[@]}"
+# echo "${computerUsers[0]}"
+# echo "${computerUsers[1]}"
+# echo "${computerUsers[2]}"
+# echo "${computerUsers[-1]}"
