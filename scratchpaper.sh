@@ -9,9 +9,6 @@ IFS=',' read -r -a computerUsers <<< "$computerUsersString"
 computerAdminsString=$(getent group sudo | cut -d: -f4)
 IFS=',' read -r -a computerAdmins <<< "$computerAdminsString"
 
-# echo "${computerAdmins[@]}"
-# echo "${computerUsers[@]}"
-
 tempUsersArray=("${computerUsers[@]}")
 computerUsers=()
 

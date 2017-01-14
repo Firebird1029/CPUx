@@ -68,11 +68,29 @@ function processUsers () {
 
 	### Get Computer Users & Admins
 	##############################################################################
-	computerUsersString=$(awk -F':' '$2 ~ "\$" {print $1}' /etc/shadow)
-	IFS='\n' read -r -a computerUsers <<< "$computerUsersString"
+	computerUsersString=$(awk -F':' '$2 ~ "\$" {print $1}' /etc/shadow | tr '\n' ',')
+	IFS=',' read -r -a computerUsers <<< "$computerUsersString"
 
 	computerAdminsString=$(getent group sudo | cut -d: -f4)
 	IFS=',' read -r -a computerAdmins <<< "$computerAdminsString"
+
+	tempUsersArray=("${computerUsers[@]}")
+	computerUsers=()
+
+	for i in "${tempUsersArray[@]}"; do
+		skipThisEntry=0
+
+		for j in "${computerAdmins[@]}"; do
+			if [ "$i" == "$j" ]; then
+				skipThisEntry=1
+			fi
+		done
+
+		echo "$skipThisEntry"
+		if [ $skipThisEntry -eq 0 ]; then
+			computerUsers+=("$i")
+		fi
+	done
 	
 	### Analyze User Lists
 	##############################################################################
