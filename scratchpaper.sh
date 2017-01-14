@@ -32,6 +32,8 @@ computerAdmins=("b" "f" "h")
 #  * h needs to be demoted from admin to user
 # */
 
+echo "${readmeUsers[@]}"
+echo "${readmeAdmins[@]}"
 echo "${computerAdmins[@]}"
 echo "${computerUsers[@]}"
 
