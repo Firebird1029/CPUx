@@ -3,22 +3,19 @@
 # apt-get install vsftpd
 # gedit /etc/vsftpd.conf
 
-# computerUsersString=$(awk -F':' '$2 ~ "\$" {print $1}' /etc/shadow | tr '\n' ',')
-# IFS=',' read -r -a computerUsers <<< "$computerUsersString"
+computerUsersString=$(awk -F':' '$2 ~ "\$" {print $1}' /etc/shadow | tr '\n' ',')
+IFS=',' read -r -a computerUsers <<< "$computerUsersString"
 
-# computerAdminsString=$(getent group sudo | cut -d: -f4)
-# IFS=',' read -r -a computerAdmins <<< "$computerAdminsString"
+computerAdminsString=$(getent group sudo | cut -d: -f4)
+IFS=',' read -r -a computerAdmins <<< "$computerAdminsString"
 
 # echo "${computerAdmins[@]}"
 # echo "${computerUsers[@]}"
 
-computerUsers=(a b c d)
-computerAdmins=(b c)
-
 tempUsersArray=("${computerUsers[@]}")
 computerUsers=()
+
 for i in "${tempUsersArray[@]}"; do
-	echo "$i"
 	skipThisEntry=0
 
 	for j in "${computerAdmins[@]}"; do
