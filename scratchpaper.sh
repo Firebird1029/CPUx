@@ -45,7 +45,7 @@ usersToPromote=()
 for i in "${computerUsers[@]}"; do
 	echo "$i"
 	if [ ! $(array_contains readmeUsers "$i") ]; then
-		echo "readmeUsers contains " "$i"
+		echo "readmeUsers does not contain " "$i"
 		if [ $(array_contains readmeAdmins "$i") ]; then
 			# This user needs to be promoted from user to admin.
 			echo "readmeAdmins contains " "$i"
@@ -56,7 +56,7 @@ for i in "${computerUsers[@]}"; do
 			usersToDelete+=("$i")
 		fi
 	else
-		echo "readmeUsers does not contains " "$i"
+		echo "readmeUsers contains " "$i"
 	fi
 done
 
