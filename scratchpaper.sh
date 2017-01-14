@@ -26,6 +26,7 @@ for i in "${tempUsersArray[@]}"; do
 		fi
 	done
 
+	echo "$skipThisEntry"
 	if [ "$skipThisEntry" == "dontskip" ]; then
 		computerUsers+=("$i")
 	fi
