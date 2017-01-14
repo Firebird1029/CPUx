@@ -16,7 +16,7 @@ array_contains () {
     return $in
 }
 
-function contains() {
+function contains () {
     local n=$#
     local value=${!n}
     for ((i=1;i < $#;i++)) {
