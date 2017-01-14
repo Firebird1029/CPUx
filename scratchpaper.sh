@@ -3,7 +3,7 @@
 # apt-get install vsftpd
 # gedit /etc/vsftpd.conf
 
-IFS='' read -r line || [[ -n "$line" ]]; do
+while IFS='' read -r line || [[ -n "$line" ]]; do
 	echo "Text read from file: $line"
 done < ~/Desktop/users.txt
 
