@@ -70,6 +70,7 @@ function processUsers () {
 	##############################################################################
 	computerUsersString=$(awk -F':' '$2 ~ "\$" {print $1}' /etc/shadow | tr '\n' ',')
 	IFS=',' read -r -a computerUsers <<< "$computerUsersString"
+	unset computerUsers[0] # Remove root
 
 	computerAdminsString=$(getent group sudo | cut -d: -f4)
 	IFS=',' read -r -a computerAdmins <<< "$computerAdminsString"
@@ -191,6 +192,7 @@ function processUsers () {
 	# Get Computer Users Again
 	computerUsersString=$(awk -F':' '$2 ~ "\$" {print $1}' /etc/shadow | tr '\n' ',')
 	IFS=',' read -r -a computerUsers <<< "$computerUsersString"
+	unset computerUsers[0] # Remove root
 	
 	for useri in "${computerUsers[@]}"; do
 		echo -e "$useri:JasonTay1234--" | chpasswd
