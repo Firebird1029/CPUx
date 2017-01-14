@@ -53,8 +53,11 @@ function processUsers () {
 	read -a readmeUsers -d "%" # Get user input.
 	# echo ""; echo "README Users: "${readmeUsers[*]}
 
-	qsort ${readmeUsers[*]} # Sort users.
-	readmeUsers=(${qsort_ret[@]}) # Store sorted list in a variable.
+	IFS=$'\n' readmeUsers=($(sort <<<"${readmeUsers[*]}"))
+	unset IFS
+	# qsort ${readmeUsers[*]} # Sort users.
+	# readmeUsers=(${qsort_ret[@]}) # Store sorted list in a variable.
+	
 	# echo "README Users Sorted: "${readmeUsers[*]} # TODO Change to debug
 	# echo "Last README User: "${readmeUsers[${#readmeUsers[@]}-1]}
 	
@@ -63,8 +66,10 @@ function processUsers () {
 	echo "Enter admins (NOT standard users) listed in README. Enter one user per line, then use the \"%\" character to exit out of the read command. List admins here:"
 	read -a readmeAdmins -d "%"
 
-	qsort ${readmeAdmins[*]} # Sort users.
-	readmeAdmins=(${qsort_ret[@]}) # Store sorted list in a variable.
+	IFS=$'\n' readmeAdmins=($(sort <<<"${readmeAdmins[*]}"))
+	unset IFS
+	# qsort ${readmeAdmins[*]} # Sort users.
+	# readmeAdmins=(${qsort_ret[@]}) # Store sorted list in a variable.
 
 	### Get Computer Users & Admins
 	##############################################################################
