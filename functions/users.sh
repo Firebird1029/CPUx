@@ -5,6 +5,7 @@
 # Never let any command below be prefixed with sudo.
 
 # http://serverfault.com/questions/477503/check-if-array-is-empty-in-bash
+errors=()
 if [ ${#errors[@]} -eq 0 ]; then
 		# Array is empty
 		:
