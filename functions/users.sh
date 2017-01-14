@@ -77,6 +77,7 @@ function processUsers () {
 	tempUsersArray=("${computerUsers[@]}")
 	computerUsers=()
 
+	# Remove Admins From Users List
 	for i in "${tempUsersArray[@]}"; do
 		skipThisEntry=0
 
@@ -188,8 +189,10 @@ function processUsers () {
 	##############################################################################
 	
 	# Get Computer Users Again
+	computerUsersString=$(awk -F':' '$2 ~ "\$" {print $1}' /etc/shadow | tr '\n' ',')
+	IFS=',' read -r -a computerUsers <<< "$computerUsersString"
 	
-	for useri in "${bobobobobobobobobobobobobobobobobobobobobobobobobobobobobobob[@]}"; do
+	for useri in "${computerUsers[@]}"; do
 		echo -e "$useri:JasonTay1234--" | chpasswd
 		chmod 0750 /home/$useri # Secure home folder of user
 	done

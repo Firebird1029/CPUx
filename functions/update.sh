@@ -26,7 +26,7 @@ function upgradeEssentials () {
 	apt-get upgrade firefox
 	apt-get upgrade bash
 
-	apt-get upgrade vsftp # TODO do not do this if safe option
+	# apt-get upgrade vsftp # TODO do not do this if safe option
 }
 
 function enableAutomaticUpgrades () {

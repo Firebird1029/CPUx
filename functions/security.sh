@@ -23,7 +23,7 @@ function changePasswordAge () {
 	sed -i "s/PASS_WARN_AGE\t7/PASS_WARN_AGE\t7/g" /etc/login.defs
 }
 
-# Require Sudo Auth TODO move to security
+# Require Sudo Auth
 function requireSudoAuth () {
 	egrep '^[^#]*NOPASSWD' /etc/sudoers /etc/sudoers.d/*
 	egrep '^[^#]*!authenticate' /etc/sudoers /etc/sudoers.d/*
