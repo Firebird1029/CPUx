@@ -42,6 +42,19 @@ function array_contains () {
 	return $in
 }
 
+function contains () {
+	local n=$#
+	local value=${!n}
+	for ((i=1;i < $#;i++)) {
+		if [ "${!i}" == "${value}" ]; then
+			echo "y"
+			return 0
+		fi
+	}
+	echo "n"
+	return 1
+}
+
 function processUsers () {
 	### Create Users Lists
 	##############################################################################
@@ -117,8 +130,8 @@ function processUsers () {
 	usersToPromote=()
 
 	for i in "${computerUsers[@]}"; do
-		if [ ! $(array_contains readmeUsers "$i") ]; then
-			if [ $(array_contains readmeAdmins "$i") ]; then
+		if [ ! $(contains "${readmeUsers[@]}" "$i") == "y" ]; then
+			if [ $(contains "${readmeAdmins[@]}" "$i") == "y" ]; then
 				# This user needs to be promoted from user to admin.
 				usersToPromote+=("$i")
 			else
@@ -129,8 +142,8 @@ function processUsers () {
 	done
 
 	for i in "${computerAdmins[@]}"; do
-		if [ ! $(array_contains readmeAdmins "$i") ]; then
-			if [ $(array_contains readmeUsers "$i") ]; then
+		if [ ! $(contains "${readmeAdmins[@]}" "$i") == "y" ]; then
+			if [ $(contains "${readmeUsers[@]}" "$i") == "y" ]; then
 				# This admin needs to be demoted from admin to user.
 				adminsToDemote+=("$i")
 			else
@@ -141,14 +154,14 @@ function processUsers () {
 	done
 
 	for i in "${readmeUsers[@]}"; do
-		if [ ! $(array_contains computerUsers "$i") ]; then
+		if [ ! $(contains "${computerUsers[@]}" "$i") == "y" ]; then
 			# This user needs to be added to the users list.
 			usersToAdd+=("$i")
 		fi
 	done
 
 	for i in "${readmeAdmins[@]}"; do
-		if [ ! $(array_contains computerAdmins "$i") ]; then
+		if [ ! $(contains "${computerAdmins[@]}" "$i") == "y" ]; then
 			# This user needs to be added to the admins list.
 			adminsToAdd+=("$i")
 		fi
@@ -176,7 +189,7 @@ function processUsers () {
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
 		confirmation=1
 	fi
-	
+
 	if [[ $confirmation -eq 0 ]]; then
 		exit
 	fi

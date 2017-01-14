@@ -4,29 +4,29 @@
 # gedit /etc/vsftpd.conf
 
 array_contains () { 
-    local array="$1[@]"
-    local seeking=$2
-    local in=1
-    for element in "${!array}"; do
-        if [[ $element == $seeking ]]; then
-            in=0
-            break
-        fi
-    done
-    return $in
+	local array="$1[@]"
+	local seeking=$2
+	local in=1
+	for element in "${!array}"; do
+		if [[ $element == $seeking ]]; then
+			in=0
+			break
+		fi
+	done
+	return $in
 }
 
 function contains () {
-    local n=$#
-    local value=${!n}
-    for ((i=1;i < $#;i++)) {
-        if [ "${!i}" == "${value}" ]; then
-            echo "y"
-            return 0
-        fi
-    }
-    echo "n"
-    return 1
+	local n=$#
+	local value=${!n}
+	for ((i=1;i < $#;i++)) {
+		if [ "${!i}" == "${value}" ]; then
+			echo "y"
+			return 0
+		fi
+	}
+	echo "n"
+	return 1
 }
 
 readmeUsers=("a" "c" "h")
@@ -58,9 +58,9 @@ adminsToDemote=()
 usersToPromote=()
 
 if echo ${arr[@]} | grep -q -w "d"; then 
-    echo "is in array"
+	echo "is in array"
 else 
-    echo "is not in array"
+	echo "is not in array"
 fi
 
 for i in "${computerUsers[@]}"; do
