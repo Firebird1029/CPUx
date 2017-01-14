@@ -144,9 +144,6 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   info "Changing sudo password. Set to \"JasonTay1234--\""
   passwd
 
-  info "Select \"yes\" when asked to automatically download and install security updates."
-  enableAutomaticUpgrades
-
   info "Finished Users phase."
 
 fi
