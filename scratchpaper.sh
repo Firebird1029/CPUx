@@ -16,6 +16,7 @@ delete=()
 for i in "${computerAdmins[@]}"; do
 	for j in "${computerUsers[@]}"; do
 		if [ "$i" == "$j" ]; then
+			echo "equal!"
 			delete+=("$j")
 		fi
 	done
