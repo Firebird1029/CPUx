@@ -7,12 +7,12 @@
 # http://serverfault.com/questions/477503/check-if-array-is-empty-in-bash
 errors=()
 if [ ${#errors[@]} -eq 0 ]; then
-		# Array is empty
-		:
-	else
-		# Array contains something
-		:
-	fi
+	# Array is empty
+	:
+else
+	# Array contains something
+	:
+fi
 
 # http://stackoverflow.com/questions/7442417/how-to-sort-an-array-in-bash
 function qsort () {
@@ -258,47 +258,66 @@ function processUsers () {
 	
 	# Do not delete admin users or yourself!
 
-	for useri in "${usersToDelete[@]}"; do
-		userdel $useri
-		# rm -r /home/username # TODO enable on unsafe option
-	done
+	if [ ! ${#usersToDelete[@]} -eq 0 ]; then
+		# Array contains something
+		for useri in "${usersToDelete[@]}"; do
+			userdel $useri
+			# rm -r /home/username # TODO enable on unsafe option
+		done
+	fi
 
-	for useri in "${adminsToDelete[@]}"; do
-		userdel $useri
-		# rm -r /home/username # TODO enable on unsafe option
-	done
+	if [ ! ${#adminsToDelete[@]} -eq 0 ]; then
+		# Array contains something
+		for useri in "${adminsToDelete[@]}"; do
+			userdel $useri
+			# rm -r /home/username # TODO enable on unsafe option
+		done
+	fi
 
 	### Add Users & Admins
 	##############################################################################
 	echo "Adding users and admins."
 	
 	# http://stackoverflow.com/questions/2150882/how-to-automatically-add-user-account-and-password-with-a-bash-script
-	for useri in "${usersToAdd[@]}"; do
-		adduser --quiet --disabled-password --shell /bin/bash --home /home/$useri --gecos "User" $useri # TODO decode this line
-	done
+	
+	if [ ! ${#usersToAdd[@]} -eq 0 ]; then
+		# Array contains something
+		for useri in "${usersToAdd[@]}"; do
+			adduser --quiet --disabled-password --shell /bin/bash --home /home/$useri --gecos "User" $useri # TODO decode this line
+		done
+	fi
 
-	for useri in "${adminsToAdd[@]}"; do
-		adduser --quiet --disabled-password --shell /bin/bash --home /home/$useri --gecos "User" $useri
-		adduser $useri sudo
-	done
+	if [ ! ${#adminsToAdd[@]} -eq 0 ]; then
+		# Array contains something
+		for useri in "${adminsToAdd[@]}"; do
+			adduser --quiet --disabled-password --shell /bin/bash --home /home/$useri --gecos "User" $useri
+			adduser $useri sudo
+		done
+	fi
 
 	### Demote Admins
 	##############################################################################
 	echo "Demoting admins."
 	
-	for useri in "${adminsToDemote[@]}"; do
-		deluser $useri sudo
-	done
+	if [ ! ${#adminsToDemote[@]} -eq 0 ]; then
+		# Array contains something
+		for useri in "${adminsToDemote[@]}"; do
+			deluser $useri sudo
+		done
+	fi
 
 	### Promote Users
 	##############################################################################
 	echo "Promoting users."
 
-	# TODO: repeated lines of code in Add Users & Admins section
-	for useri in "${usersToPromote[@]}"; do
-		adduser $useri sudo
-	done
-	
+	if [ ! ${#usersToPromote[@]} -eq 0 ]; then
+		# Array contains something
+		# TODO: repeated lines of code in Add Users & Admins section
+		for useri in "${usersToPromote[@]}"; do
+			adduser $useri sudo
+		done
+	fi
+
 	### Set All Users' Passwords
 	##############################################################################
 	echo "Setting all users' passwords."
