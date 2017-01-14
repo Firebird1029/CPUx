@@ -12,10 +12,10 @@
 # echo "${computerAdmins[@]}"
 # echo "${computerUsers[@]}"
 
-computerUsers=( a b c d )
-computerAdmins=( b c )
+computerUsers=(a b c d)
+computerAdmins=(b c)
 
-tempUsersArray="${computerUsers[@]}"
+tempUsersArray=("${computerUsers[@]}")
 computerUsers=()
 for i in "${tempUsersArray[@]}"; do
 	echo "$i"
